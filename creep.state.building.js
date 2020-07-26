@@ -15,6 +15,10 @@ module.exports = {
 		if (constructionSite && creep.build(constructionSite) == ERR_NOT_IN_RANGE) {
 			creep.moveTo(constructionSite, { visualizePathStyle: { stroke: '#d716e8' }});
 		}
+
+	},
+	checkEnds: function (creep) {
+		const constructionSite = Game.getObjectById(creep.memory.constructionSite);
 		if (!creep.store.getUsedCapacity(RESOURCE_ENERGY) || !constructionSite) {
 			delete creep.memory.constructionSite;
 			return CREEP_STATE_ENDS;

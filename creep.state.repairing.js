@@ -20,7 +20,9 @@ module.exports = {
 		if (structure && creep.repair(structure) == ERR_NOT_IN_RANGE) {
 			creep.moveTo(structure, { visualizePathStyle: { stroke: '#e2ba13' }});
 		}
-
+	},
+	checkEnds: function (creep) {
+		const structure = Game.getObjectById(creep.memory.structureToRepair);
 		if (!creep.store.getUsedCapacity(RESOURCE_ENERGY) || !structure || structure.hits / structure.hitsMax == 1) {
 			delete creep.memory.structureToRepair;
 			return CREEP_STATE_ENDS;

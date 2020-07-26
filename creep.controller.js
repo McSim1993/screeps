@@ -8,11 +8,11 @@ function CreepController (creep) {
 }
 
 CreepController.prototype.loop = function () {
-	const stateResult = this.state.loop(this.creep);
-	if (stateResult == CREEP_STATE_ENDS) {
+	if (this.state.checkEnds(this.creep) == CREEP_STATE_ENDS) {
 		const nextState = this.role.nextState(this.creep);
 		nextState.enter(this.creep);
 	}
+	this.state.loop(this.creep);
 };
 
 module.exports = CreepController;

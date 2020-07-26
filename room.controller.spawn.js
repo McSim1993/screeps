@@ -8,6 +8,7 @@ function SpawnController (room) {
 
 SpawnController.prototype.loop = function () {
 	this.createHarversters();
+	this.createBuilders();
 	const nextSpawn = this.next();
 	if (nextSpawn) {
 		this.spawn.spawnCreep(nextSpawn.type.bodySet(this.room), nextSpawn.name, {memory: nextSpawn.memory});
@@ -28,6 +29,16 @@ SpawnController.prototype.createHarversters = function () {
 			}
 		});
 	});
+};
+
+SpawnController.prototype.createBuilders = function () {
+	const name = `${this.room.name}_${creepRoles.builder.name}_0`;
+	if (!Memory.creeps[name]) {
+		Memory.creeps[name] = {
+			role: creepRoles.builder.name,
+			state: creepRoles.builder.initialState
+		};
+	}
 };
 
 SpawnController.prototype.next = function () {

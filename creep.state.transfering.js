@@ -52,6 +52,9 @@ module.exports = {
 		if (target && creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 			creep.moveTo(target, { visualizePathStyle: { stroke: '#1380cf' }});
 		}
+	},
+	checkEnds: function (creep) {
+		const target = Game.getObjectById(creep.memory.transferTarget);
 		if (!creep.store.getUsedCapacity(RESOURCE_ENERGY) || !target || !target.store.getFreeCapacity(RESOURCE_ENERGY)) {
 			delete creep.memory.transferTarget;
 			return CREEP_STATE_ENDS;

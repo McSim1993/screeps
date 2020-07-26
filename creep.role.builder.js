@@ -1,14 +1,12 @@
 const states = require('./creep.states');
 
 module.exports = {
-	name: 'harvester',
-	initialState: states.harvesting.name,
+	name: 'builder',
+	initialState: states.draining.name,
 	nextState: function (creep) {
 		if (!creep.store.getUsedCapacity()) {
-			return states.harvesting;
-		}
-		if (states.transfering.findTarget(creep)) {
-			return states.transfering;
+			states.draining.findTarget(creep);
+			return states.draining;
 		}
 		if (states.repairing.findTarget(creep)) {
 			return states.repairing;
