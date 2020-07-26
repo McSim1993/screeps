@@ -44,7 +44,6 @@ function findEnergy (creep) {
 }
 
 function loop (creep) {
-	var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 	if (constructionSite) {
 		return builderRole(creep, constructionSite);
 	}
@@ -57,6 +56,8 @@ function spawn (spawn, energy) {
 	var body = [];
 	for (let i = 0; i < numberOfParts; i++) {
 		body.push(WORK);
+		body.push(CARRY);
+		body.push(MOVE);
 		body.push(CARRY);
 		body.push(MOVE);
 	}

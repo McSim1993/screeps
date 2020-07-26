@@ -39,9 +39,7 @@ var states = {
 					delete creep.memory.flag;
 				}
 			} else {
-				if (creep.upgradeController(creep.room.controller) != ERR_NOT_IN_RANGE) {
-					creep.memory.state = 'upgrading';
-				}
+
 			}
 		},
 		loop: moveToController

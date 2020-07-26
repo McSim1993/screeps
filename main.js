@@ -1,13 +1,7 @@
-var creepsManager = require('./managers.creeps');
-var spawnManager = require('./managers.spawn');
-var flagManager = require('./managers.flags');
-var statsManager = require('./managers.stats');
-var towerManager = require('./managers.towers');
+const constants = require('./constants');
+const RoomController = require('./room.controller');
 
 module.exports.loop = function () {
-	statsManager.loop();
-	flagManager.loop();
-	creepsManager.loop();
-	towerManager.loop();
-	spawnManager.loop();
+	const room = new RoomController(Game.spawns['Base'].room);
+	room.loop();
 };
