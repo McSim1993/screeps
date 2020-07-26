@@ -12,6 +12,12 @@ function findTarget (creep) {
 	var target;
 
 	if (!target) {
+		target = creep.pos.findClosestByPath(FIND_RUINS, {
+			filter: (ruin) => ruin.store.energy > 0
+		});
+	}
+
+	if (!target) {
 		target = structureWithEnergy(STRUCTURE_CONTAINER);
 	}
 
@@ -40,7 +46,10 @@ module.exports = {
 	},
 	checkEnds: function (creep) {
 		const target = Game.getObjectById(creep.memory.drainTarget);
-		if (!creep.store.getFreeCapacity(RESOURCE_ENERGY) || !target || !target.store.getUsedCapacity(RESOURCE_ENERGY)) {
+		if (!creep.store.getFreeCapacity(RESOURCE_ENERGY) ||
+			!target ||
+			!target.store.getUsedCapacity(RESOURCE_ENERGY) ||
+			target.store.getUsedCapacity(RESOURCE_ENERGY) == 1) {
 			delete creep.memory.drainTarget;
 			return CREEP_STATE_ENDS;
 		} else {

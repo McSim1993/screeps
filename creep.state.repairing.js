@@ -3,7 +3,7 @@ const name = 'repairing';
 function findTarget (creep) {
 	const structureToRepair = creep.pos.findClosestByPath(FIND_STRUCTURES, {
 		filter: (structure) => {
-			return (structure.hits / structure.hitsMax) < 0.8;
+			return (structure.hits / structure.hitsMax) < 0.8 && structure.structureType != STRUCTURE_WALL;
 		}
 	});
 	if (structureToRepair) {

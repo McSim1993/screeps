@@ -11,7 +11,7 @@ module.exports = {
 				return states.waiting;
 			}
 		}
-		if (creep.room.controller.ticksToDowngrade < 200) {
+		if (creep.room.controller.ticksToDowngrade < 300) {
 			return states.upgrading;
 		}
 		if (states.repairing.findTarget(creep)) {
