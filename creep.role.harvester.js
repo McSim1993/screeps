@@ -10,6 +10,9 @@ module.exports = {
 		if (states.transfering.findTarget(creep)) {
 			return states.transfering;
 		}
+		if (creep.memory.state == states.transfering.name) {
+			return states.waiting;
+		}
 		if (states.repairing.findTarget(creep)) {
 			return states.repairing;
 		}

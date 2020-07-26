@@ -5,8 +5,14 @@ module.exports = {
 	initialState: states.draining.name,
 	nextState: function (creep) {
 		if (!creep.store.getUsedCapacity()) {
-			states.draining.findTarget(creep);
-			return states.draining;
+			if (states.draining.findTarget(creep)) {
+				return states.draining;
+			} else {
+				return states.waiting;
+			}
+		}
+		if (creep.room.controller.ticksToDowngrade < 200) {
+			return states.upgrading;
 		}
 		if (states.repairing.findTarget(creep)) {
 			return states.repairing;

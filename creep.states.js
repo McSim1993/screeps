@@ -4,6 +4,7 @@ const Building = require('./creep.state.building');
 const Upgrading = require('./creep.state.upgrading');
 const Repairing = require('./creep.state.repairing');
 const Draining = require('./creep.state.draining');
+const Waithing = require('./creep.state.waiting');
 
 module.exports = {
 	harvesting: Harvesting,
@@ -11,5 +12,6 @@ module.exports = {
 	building: Building,
 	upgrading: Upgrading,
 	repairing: Repairing,
-	draining: Draining
+	draining: Draining,
+	waithing: Waithing
 };
