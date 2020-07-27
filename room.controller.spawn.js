@@ -32,12 +32,14 @@ SpawnController.prototype.createHarversters = function () {
 };
 
 SpawnController.prototype.createBuilders = function () {
-	const name = `${this.room.name}_${creepRoles.builder.name}_0`;
-	if (!Memory.creeps[name]) {
-		Memory.creeps[name] = {
-			role: creepRoles.builder.name,
-			state: creepRoles.builder.initialState
-		};
+	for (var i = 0; i < 2; i++) {
+		const name = `${this.room.name}_${creepRoles.builder.name}_${i}`;
+		if (!Memory.creeps[name]) {
+			Memory.creeps[name] = {
+				role: creepRoles.builder.name,
+				state: creepRoles.builder.initialState
+			};
+		}
 	}
 };
 

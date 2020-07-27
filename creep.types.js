@@ -13,7 +13,11 @@ module.exports = {
 			var result = [];
 			var cost = 0;
 			for (var i = 0; i < Math.floor(capacity / 250); i++) {
-				result = result.concat([WORK, MOVE, MOVE, CARRY]);
+				if (i % 2 == 0) {
+					result = result.concat([WORK, MOVE, MOVE, CARRY]);
+				} else {
+					result = result.concat([WORK, MOVE, CARRY, CARRY]);
+				}
 				cost += 250;
 			}
 			for (var i = 0; i < Math.floor((capacity - cost) / 100); i++) {

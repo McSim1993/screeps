@@ -1,11 +1,11 @@
 const name = 'draining';
 
 function findTarget (creep) {
-	function structureWithEnergy (structureType) {
+	function structureWithEnergy (structureType, limit) {
 		return creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType == structureType) &&
-				structure.store.energy > 50;
+				structure.store.energy >= limit;
 			}
 		});
 	}
@@ -18,15 +18,15 @@ function findTarget (creep) {
 	}
 
 	if (!target) {
-		target = structureWithEnergy(STRUCTURE_CONTAINER);
+		target = structureWithEnergy(STRUCTURE_CONTAINER, 0);
 	}
 
 	if (!target) {
-		target = structureWithEnergy(STRUCTURE_SPAWN);
+		target = structureWithEnergy(STRUCTURE_SPAWN, 50);
 	}
 
 	if (!target) {
-		target = structureWithEnergy(STRUCTURE_EXTENSION);
+		target = structureWithEnergy(STRUCTURE_EXTENSION, 50);
 	}
 
 	if (target) {
@@ -57,8 +57,10 @@ module.exports = {
 		}
 	},
 	enter: function (creep) {
+		if (creep.memory.state != name) {
+			creep.say('🧪Drain');
+		}
 		creep.memory.state = name;
-		creep.say('🧪Drain');
 	},
 	findTarget: findTarget
 };
